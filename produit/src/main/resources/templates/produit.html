@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Management System</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#"> Gestion des Produits</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+
+	</nav>
+	<div class="container">
+
+		<div class="row">
+
+			<h1>Listes des produits</h1>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-1">
+				<a th:href="@{/api/produits}" class="btn btn-primary btn-sm mb-3">
+					Revenir &agrave; listes des produtis</a>
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+
+					<th scope="col">Nom de produit</th>
+					<th scope="col">Fiche de produit</th>
+					<th scope="col">Quantit&eacute; de produit</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+
+
+			<tbody>
+				<tr th:object="${produit }">
+					<td th:text="*{nom}"></td>
+					<td th:text="*{fiche}"></td>
+					<td th:text="*{quantite}"></td>
+					<td><a th:href="@{/api/produits/edit/{id}(id=${produit.id})}"
+						class="btn btn-primary"> Mettre à jour </a> <a
+						th:href="@{/api/produits/{id}(id=${produit.id})}"
+						class="btn btn-danger"> Supprime </a></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>
