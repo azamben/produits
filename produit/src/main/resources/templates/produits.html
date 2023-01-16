@@ -60,7 +60,7 @@
 						<td th:text="${produit.fiche}"></td>
 						<td th:text="${produit.quantite}"></td>
 						<td><a th:href="@{/api/produits/edit/{id}(id=${produit.id})}"
-							class="btn btn-primary"> Mettre à jour</a> <a
+							class="btn btn-primary"> Mettre &agrave; jour</a> <a
 							onclick="return confirm('Etes vous sûre?')"
 							th:href="@{/api/produits/{id}(id=${produit.id})}"
 							class="btn btn-danger"> Supprime </a></td>

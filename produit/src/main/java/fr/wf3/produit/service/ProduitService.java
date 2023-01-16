@@ -18,7 +18,7 @@ public class ProduitService {
 	ProduitRepository produitRepository;
 	
 	// CRUD
-	// CREATE 
+	// 1- CREATE 
 	public Produit createProduit(Produit p) {
 	 return produitRepository.save(p);
 	}
@@ -28,22 +28,22 @@ public class ProduitService {
 		return produitRepository.findAll(PageRequest.of(page, 4));
 	}
 	*/
-	// READ LISTE DES PRODUITS
+	// 2- READ: LISTE DES PRODUITS
 	public Page<Produit> getProduits( @RequestParam(name="page",defaultValue="0")int page) {
 	 return produitRepository.findAll(PageRequest.of(page, 4));
 	}
-	// READ UN PRODUIT
+	// 3- READ: UN PRODUIT
 		public Produit getOneProduit(Long id) {
 		 return produitRepository.findById(id).get();
 		
 		 
 		}
 
-	// DELETE
+	// 4- DELETE : UN PRODUIT
 	public void deleteProduit(Long id) {
 	produitRepository.deleteById(id);
 	}
-	// UPDATE
+	// 5- UPDATE :UN PRODUIT
 	public Produit updateProduit ( Produit p) {
 	
 	 

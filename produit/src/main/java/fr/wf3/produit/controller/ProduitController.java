@@ -15,15 +15,16 @@ import fr.wf3.produit.model.Produit;
 import fr.wf3.produit.service.ProduitService;
 
 
-// question: @Controller @RestController avec html, Optional et .get() avec le Model, afficher une message si la donnée il est pas 
-// "redirect:/api/produits"; ecrire url complet
+// question: @Controller @RestController avec html, Optional et .get() avec le Model, afficher un message si la donnée elle n'estpas 
+// "redirect:/api/produits"; écrire url complet
 
 @Controller
 @RequestMapping("/api")
 public class ProduitController {
 	@Autowired
 	 ProduitService produitService;
-	// READ LIRE LA LIST DES  PRODUITS 
+	
+	// READ : LIRE LA LIST DES  PRODUITS 
 	
 		//@RequestMapping(value="/produits", method=RequestMethod.GET)
 		@GetMapping("/produits")
@@ -36,7 +37,7 @@ public class ProduitController {
 			return "produits";
 		}
 	
-	// CREATE UN PRODUIT / ENVOYER A LA BASE DE DONNEES
+	// CREATE: UN PRODUIT 
 	@GetMapping("/produits/new")
 	public String createProduitForm(Model model) {
 		Produit produit = new Produit();
@@ -44,6 +45,8 @@ public class ProduitController {
 		
 		return "create_produit";
 	}
+	
+	// ENVOYER A LA BASE DE DONNEES
 	@PostMapping("/produits")
 	public String saveProduit(@ModelAttribute("produit") Produit produit) {
 		produitService.saveProduit(produit);
@@ -65,7 +68,7 @@ public class ProduitController {
 		}
 		*/
 	// FAIRE ATTETION AVEC MEME URL  
-	// ATTETION AUX RESSOURCES DES DONNEES SUR LA BASE DONNEES MEME CHAMPS ET ECRITURE .
+	// ATTENTION AUX RESSOURCES DES DONNEES SUR LA BASE DONNEES MEME CHAMPS ET ECRITURE .
 	@GetMapping("/produit/{id}")
 	public String readOneProduit(@PathVariable  Long id, Model model) {
 	  model.addAttribute("produit", produitService.getOneProduit(id));
@@ -73,7 +76,7 @@ public class ProduitController {
 	 
 	}
 	
-	// post avec le buttun submil ou un line en clik
+	// post avec le buttun submit ou un lien  en clik
 
 	
 	// UPDATE METTRE A JOUR PRODUIT
@@ -85,7 +88,7 @@ public class ProduitController {
 	}
 	*/
 	//METHODE UPDATE
-		//1)  chercher un éelement pas on id à partir de formulaire
+		//1)  chercher un element par  son id à partir de formulaire
 		@GetMapping("/produits/edit/{id}")
 		public String editProduitrForm(@PathVariable Long id, Model model) {
 			model.addAttribute("produit", produitService.getOneProduit(id));
@@ -101,7 +104,7 @@ public class ProduitController {
 			existProduit.setNom(produit.getNom());
 			existProduit.setFiche(produit.getFiche());
 			existProduit.setQuantite(produit.getQuantite());
-			// SAUVGARDER L OBEJT ENSEIGNANT MIS A JOUR
+			// SAUVGARDER L'OBJET ENSEIGNANT MIS A JOUR
 			produitService.updateProduit(existProduit);
 			
 			return "redirect:/api/produits";
@@ -112,7 +115,7 @@ public class ProduitController {
 	
 	
 	
-	//DELETTE SUPPRIMER UN PRODUIT 
+	// DELETE :SUPPRIMER UN PRODUIT 
 		@GetMapping("/produits/{id}")
 		public String supprimeProduit(@PathVariable Long id ) {
 			produitService.deleteProduit(id);
